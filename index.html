@@ -10,23 +10,36 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
     />
   </head>
-  <body>
-    <header class="container my-2 text-light">
-      <div class="d-flex justify-content-center w-100">
-        <h3 class="col-12 col-sm-8 col-lg-6">Weather Dashboard</h3>
+  <body class="flex-column min-100-vh">
+    <header class="hero">
+        <div class="d-flex justify-content-center text-light">
+        <h3 class="col-12 col-sm-3">Weather Dashboard</h3>
       </div>
     </header>
-    <section class="flex-row justify-space-between">
-        <div class="col-12 col-md-4">
-            <div class="card">
-                <h3 class="card-header text">Search for a City</h3>
+    <section class="container-fluid">
+        <div class="row">
+            <div class="card col-md-4">
                 <form id="search-form" class="card-body">
-                    <label class="form-label" for="searchCity"></label>
+                    <label class="form-label" for="searchCity"><h3>Search for a City:</h3></label>
                     <input name="city" id="city" type="text" class="form-input" />
                     <button type="Search" class="btn">Search</button>
                 </form>
             </div>
+            <div class="col-md-8">
+            <div class="card">    
+            <div id="currentCity-container" class="currentCity-group"></div>
+            </div>
+            </div>
         </div>
+            <div id="city-container" class="city-group"></div>
+            <div id="limit-warning"></div>
+    </section>            
+    <section>     
+        </div>
+        <div class="col-md-4 offset-md-4">
+            <h3 class="forecast">5-Day Forecast:<span id="forecasts5"></span></h3> 
+            <div id="forecast container" class="weather-group"></div>
+        </div>    
     </section>
 
     <script
