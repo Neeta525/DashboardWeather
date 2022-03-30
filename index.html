@@ -3,43 +3,72 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weather Dashboard</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
+    <title>Weather Dashboard</title>
   </head>
+
   <body class="flex-column min-100-vh">
     <header class="hero">
         <div class="d-flex justify-content-center text-light">
         <h3 class="col-12 col-sm-3">Weather Dashboard</h3>
       </div>
     </header>
+
     <section class="container-fluid">
-        <div class="row">
-            <div class="card col-md-4">
-                <form id="search-form" class="card-body">
-                    <label class="form-label" for="searchCity"><h3>Search for a City:</h3></label>
-                    <input name="city" id="city" type="text" class="form-input" />
-                    <button type="Search" class="btn">Search</button>
-                </form>
-            </div>
-            <div class="col-md-8">
-            <div class="card">    
-            <div id="currentCity-container" class="currentCity-group"></div>
-            </div>
-            </div>
+      <div class="row">
+        <div class="card col-md-4">
+          <form id="search-form" class="card-body">
+          <label class="form-label" for="searchCity"><h3>Search for a City:</h3></label>
+          <input name="searchCity" id="searchCity" type="text" autofocus="true" class="form-input" />
+          <button type="Submit" class="btn">Search</button>
+          </form>
         </div>
-            <div id="city-container" class="city-group"></div>
-            <div id="limit-warning"></div>
-    </section>            
+          <div class="card col-md-8">    
+          <div id="currentCity-container" class="currentCity-group"></div>
+          <span class="currrentCityData" id="currentCityData"></span>
+          <span class="currentDate" id="currentDate"></span>
+          <ul>
+            <li><h5 class="card-title"></h5></li>
+            <li>Temp:</li>
+            <li>Wind:</li>
+            <li>Humidity:</li>
+            <li>UV Index:</li>
+          </ul>
+          </div>
+
+      </div>
+          <div id="history-container" class="history-group"></div>
+          <div id="limit-warning"></div>
+    </section>
+
     <section>     
-        </div>
-        <div class="col-md-4 offset-md-4">
-            <h3 class="forecast">5-Day Forecast:<span id="forecasts5"></span></h3> 
-            <div id="forecast container" class="weather-group"></div>
-        </div>    
+        <div class="col-md-8 offset-md-4">
+            <h3 class="forecast">5-Day Forecast: <span id="forecast5"></span></h3> 
+            <div id="forecast-container" class="weather-group"></div>
+        </div>        
+            <div class="row col-md-8 offset-md-4" id="forecast5Cards">
+              <div class="card text-white bg-dark" style="width: 8rem">
+                <ul>
+                  <li><h5 class="card-title"></h5></li>
+                  <li>Temp:</li><li>Wind:</li><li>Humidity:</li></ul></div>
+              <div class="card text-white bg-dark" style="width: 8rem">
+                <ul><li><h5 class="card-title"></h5></li>
+                  <li>Temp:</li><li>Wind:</li><li>Humidity:</li></ul></div>
+              <div class="card text-white bg-dark" style="width: 8rem">
+                <ul><li><h5 class="card-title"></h5></li>
+                  <li>Temp:</li><li>Wind:</li><li>Humidity:</li></ul></div>
+              <div class="card text-white bg-dark" style="width: 8rem">
+                <ul><li><h5 class="card-title"></h5></li>
+                  <li>Temp:</li><li>Wind:</li><li>Humidity:</li></ul></div>
+              <div class="card text-white bg-dark" style="width: 8rem">
+                <ul><li><h5 class="card-title"></h5></li>
+                  <li>Temp:</li><li>Wind:</li><li>Humidity:</li></ul></div>
+              <div class="card text-white bg-dark" style="width: 8rem">
+                <ul><li><h5 class="card-title"></h5></li>
+                  <li>Temp:</li><li>Wind:</li><li>Humidity:</li></ul></div>
+            </div>
     </section>
 
     <script

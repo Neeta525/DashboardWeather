@@ -1,13 +1,17 @@
+/*Styles the header, sets the bg color*/
 header {
     display: block;
     width: 100%;
     background-color: #2a2a72;
     background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
 }
+
+/*font for all h3 elements*/
 h3 {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
+/*Sets the button style*/
 .btn {
     font-size: 1.3rem;
     padding: 6px 5px;
@@ -21,14 +25,17 @@ h3 {
     outline: none;
     box-shadow: 0 1px 1px 0;
     transform: translate(-1px, -1px);
-  }
-  
-   .btn:hover {
+}
+
+/*When hovering over button will color will lighten*/
+.btn:hover {
     background-color: lightskyblue;
     color: white;
     transform: translate(0, 0);
     box-shadow: 2px 2px; 
 }
+
+/*styles the search input area*/
 .form-input {
     width: 100%;
     padding: 3%;
@@ -36,5 +43,11 @@ h3 {
     font-size: 1.2rem;
     border: 2px solid;
     border-radius: 0.5em;
-  }
+}
 
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    line-height: 35px;
+  }
