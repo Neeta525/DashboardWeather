@@ -22,7 +22,7 @@
           <form id="search-form" class="card-body">
           <label class="form-label" for="searchCity"><h3>Search for a City:</h3></label>
           <input name="searchCity" id="searchCity" type="text" autofocus="true" class="form-input" />
-          <button type="Submit" class="btn">Search</button>
+          <button type="Submit" class="btn" id="cityButton">Search</button>
           </form>
         </div>
           <div class="card col-md-8">    
@@ -31,15 +31,15 @@
           <span class="currentDate" id="currentDate"></span>
           <ul>
             <li><h5 class="card-title"></h5></li>
-            <li>Temp:</li>
-            <li>Wind:</li>
-            <li>Humidity:</li>
-            <li>UV Index:</li>
+            <li id="cTemp">Temp:</li>
+            <li id="cWind">Wind:</li>
+            <li id="cHumidity">Humidity:</li>
+            <li id="cIndex">UV Index:</li>
           </ul>
           </div>
 
       </div>
-          <div id="history-container" class="history-group"></div>
+          <span id="historyContainer" class="history-group"></span>
           <div id="limit-warning"></div>
     </section>
 
@@ -51,22 +51,19 @@
             <div class="row col-md-8 offset-md-4" id="forecast5Cards">
               <div class="card text-white bg-dark" style="width: 8rem">
                 <ul>
-                  <li><h5 class="card-title"></h5></li>
+                  <li><h5 class="card-title" id="card1"></h5></li>
                   <li>Temp:</li><li>Wind:</li><li>Humidity:</li></ul></div>
               <div class="card text-white bg-dark" style="width: 8rem">
-                <ul><li><h5 class="card-title"></h5></li>
+                <ul><li><h5 class="card-title" id="card2"></h5></li>
                   <li>Temp:</li><li>Wind:</li><li>Humidity:</li></ul></div>
               <div class="card text-white bg-dark" style="width: 8rem">
-                <ul><li><h5 class="card-title"></h5></li>
+                <ul><li><h5 class="card-title" id="card3"></h5></li>
                   <li>Temp:</li><li>Wind:</li><li>Humidity:</li></ul></div>
               <div class="card text-white bg-dark" style="width: 8rem">
-                <ul><li><h5 class="card-title"></h5></li>
+                <ul><li><h5 class="card-title" id="card4"></h5></li>
                   <li>Temp:</li><li>Wind:</li><li>Humidity:</li></ul></div>
               <div class="card text-white bg-dark" style="width: 8rem">
-                <ul><li><h5 class="card-title"></h5></li>
-                  <li>Temp:</li><li>Wind:</li><li>Humidity:</li></ul></div>
-              <div class="card text-white bg-dark" style="width: 8rem">
-                <ul><li><h5 class="card-title"></h5></li>
+                <ul><li><h5 class="card-title" id="card5"></h5></li>
                   <li>Temp:</li><li>Wind:</li><li>Humidity:</li></ul></div>
             </div>
     </section>
