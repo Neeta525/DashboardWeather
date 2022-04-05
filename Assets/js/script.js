@@ -14,13 +14,13 @@ var cityButton = document.querySelector("#cityButton");
 
 var forecastContainerEl = document.querySelector("#forecast-container");
 var forecast5 = document.querySelector("#forecast5");
-var day1 = document.querySelector("#card1");
-var day2 = document.querySelector("#card2");
-var day3 = document.querySelector("#card3");
-var day4 = document.querySelector("#card4");
-var day5 = document.querySelector("#card5");
-
-
+var forecastList = document.querySelector("#forecastList");
+// var day1 = document.querySelector("#card1");
+// var day2 = document.querySelector("#card2");
+// var day3 = document.querySelector("#card3");
+// var day4 = document.querySelector("#card4");
+// var day5 = document.querySelector("#card5");
+var today = moment().format("MMMM Do, YYYY");
 
 //API key from open weather map
 var APIKey = "c7d3d48601b1c7967b9b776ae498a355";
@@ -32,7 +32,8 @@ var formSubmitHandler = function (event) {
     var searchCity = cityInputEl.value.trim();
 
     if (searchCity) {
-        getCityWeather (searchCity);
+        getCoords (searchCity);
+        currentEl.textContent = searchCity + " " + today;
     }
 };
 //Local Storage-**not working right now
@@ -41,7 +42,7 @@ var formSubmitHandler = function (event) {
 
 // function renderLastCity() {
 //     cityList.innerHTML = "";
-//     historyContainerSpan.texContent = citiesList.length;
+//     historyContainerSpan.textContent = citiesList.length;
 
 //     for (var i = 0; i < citiesList.length; i++) {
 //         var list = citiesList[i];
@@ -51,7 +52,7 @@ var formSubmitHandler = function (event) {
 //         li.setAttribute("data-index", i);
 
 //         var button = document.createElement("button");
-//         button.textContent = ("");
+//         button.textContent = ("searchCity");
 
 //         li.appendChild(button);
 //         citiesList.appendChild(li);
@@ -98,21 +99,24 @@ var formSubmitHandler = function (event) {
 // init();
 
 //Get data from the URL
-var getCityWeather = function (city) {
-    var cityInfo = cityInputEl.value;
-    var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + APIKey;
-    
-    fetch(apiUrl)
+var getCityWeather = function (lat, lon) {
+    // var cityInfo = cityInputEl.value;
+    var apiUrl = "https://api.openweathermap.org/data/2.5/onecall?";
+    var getlat = "lat=" + lat;
+    var getlon = "&lon=" + lon;
+    var rest = "&exclude=minutely,hourly,daily,alert&units=imperial&appid=";
+
+    fetch(apiUrl + getlat + getlon + rest + APIKey)
     .then(function(response) {
         if (response.ok) {
-            console.log(response);
+
             response.json().then(function (data){
             console.log(data);
-            displayCity(data, city);
+            displayCity(data);
             displayInfo(data);
-            forecast(data.coord.lat, data.coord.lon);
-            getDetails(data);
-            getUV(data);
+            
+            // getDetails();
+            // getUV();
             });
         }
     })
@@ -122,24 +126,56 @@ var getCityWeather = function (city) {
 };
 
 
-//Function for weather detail to go to each card for 5-day forecast
+
+//function for 5-day forecast
+function forecastDisplay(data) {
+    for (var i = 0; i < 5; i++) {
+        var container = document.createElement("div");
+        var date = moment().format('L'); 
+        container.classList.add("bg-dark");
+        container.classList.add("text-white");
+        container.classList.add("card");
+        var li = document.createElement("li");
+        var cardTitle = document.createElement("h5");
+        cardTitle.textContent = date;
+        var templi = document.createElement("li");
+        templi.textContent = "Temp: " + data.list[i].main.temp + "\u00B0" + "F";
+        var windli = document.createElement("li");
+        windli.textContent = "Wind: " + data.list[i].wind.speed + " MPH";
+        var humidityli = document.createElement("li");
+        humidityli.textContent = "UV Index: " + data.list[i].main.humidity + "%";
+
+        li.appendChild(cardTitle)
+        container.appendChild(li)
+        container.appendChild(templi)
+        container.appendChild(windli)
+        container.appendChild(humidityli)
+        forecastList.appendChild(container)
+    }
+}
+
+
+
+//Function for longitude and latitude 
 function forecast(lat, long) {
     var getForecast = "https://api.openweathermap.org/data/2.5/forecast?";
     var getlat = "lat=" + lat;
     var getlong = "&lon=" + long;
-    var rest = "&appid=";
+    var rest = "&cnt=5&appid=";
     
     fetch(getForecast + getlat + getlong + rest + APIKey)
     .then(function(response){
         if (response.ok) {
-            console.log(response);
+
             response.json().then(function (data){
             console.log(data);
+            forecastDisplay(data);
             });
         }
     })
 }
 
+//This function 
 function getCoords() {
     var getCoord = "http://api.openweathermap.org/geo/1.0/direct?q=";
     var cityName = cityInputEl.value;
@@ -150,39 +186,13 @@ function getCoords() {
         if (response.ok) {
             response.json().then(function (data){
             console.log(data);
+            getCityWeather(data[0].lat,data[0].lon);
+            forecast(data[0].lat,data[0].lon);
             });
         }
     })
 }
 
-function getDetails() {
-    var getDetails = "https://api.openweathermap.org/data/2.5/weather?";
-    var rest = "&appid=";
-
-    fetch(getDetails + rest + APIKey)
-    .then(function(response){
-        if (response.ok) {
-            response.json().then(function (data){
-            console.log(data);
-            });
-        }
-    })
-}
-
-function getUV() {
-    var getUV = "https://api.openweathermap.org/data/2.5/onecall?=";
-    var rest = "&appid=";
-
-    fetch(getUV + rest + APIKey)
-    .then(function(response){
-        if (response.ok) {
-            response.json().then(function (data){
-            console.log(data);
-            });
-        }
-    })
-}
-//getCoords(data);
 
 //this function creates elements for current city displayed at top and appends them to the area they need to go on the web page
 var displayCity = function (cities) {
@@ -206,15 +216,13 @@ for (var i = 0; i < cities.length; i++) {
 }
 }
 
-var today = moment().format("MMMM Do, YYYY");
-
 
 function displayInfo(data) {
-    currentEl.textContent = data.cityName + " " + today;
-    currentTempEl.textContent = "Temp: " + data.main.temp + "\u00B0" + "F";
-    currentWindEl.textContent = "Wind: " + data.wind.speed + " MPH";
-    currentHumidityEl.textContent = "Humidity: " + data.main.humidity + "%";
-    // currentIndexEl.textContent = "UV Index: " + data.current.uvi;
+    
+    currentTempEl.textContent = "Temp: " + data.current.temp + "\u00B0" + "F";
+    currentWindEl.textContent = "Wind: " + data.current.wind_speed + " MPH";
+    currentHumidityEl.textContent = "Humidity: " + data.current.humidity + "%";
+    currentIndexEl.textContent = "UV Index: " + data.current.uvi;
 }
 
 
