@@ -1,3 +1,10 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
 /*Styles the header, sets the bg color*/
 header {
     display: block;
@@ -45,15 +52,50 @@ h3 {
     border-radius: 0.5em;
 }
 
+
 ul, li {
     list-style-type: none;
     margin: 0;
     padding: 0;
     line-height: 35px;
-  }
-
-#forecastList {
-    display: inline-block;
-    flex-direction: row;
 }
 
+li:before {
+    content: "\200B";
+    position: absolute;
+}
+
+li::after {
+    content: " ";
+    display: block;
+    clear: both;
+}
+
+li button {
+    float: right;
+    border: none;
+    height: 40px;
+    cursor: pointer;
+    background-color: #777a7c;
+    color: white;
+    font-size: 1em;
+}  
+
+#cCity {
+    font-weight: bold;
+    font-size: 30px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.card2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px;
+    
+}
+
+#citylist {
+    border: solid black, 1px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
