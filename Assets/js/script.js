@@ -80,14 +80,13 @@ searchFormEl.addEventListener("submit", function(event) {
 });
 
 // Add click event to list of cities searched
-// todoList.addEventListener("click", function(event) {
-//     var element = event.target;
+// citiesList.addEventListener("click", function(event) {
+//     
+    
 
-//     if (element.matches("button") === true) {
-//         var index = 
 
-//     storeTodos();
-//     renderTodos();
+//     storeCities();
+//     renderCitiess();
 //     }
 // });
 
@@ -126,9 +125,12 @@ function forecastDisplay(data) {
         var container = document.createElement("div");
         var date = "the day after"; 
         container.classList.add("card2");
-        container.classList.add("bg-dark");
+        container.classList.add("card");
+        
         container.classList.add("text-white");
-        var li = document.createElement("li");
+        var div = document.createElement("div");
+        div.classList.add("card-body");
+        div.classList.add("bg-dark");
         var cardTitle = document.createElement("h5");
         cardTitle.textContent = date;
         var templi = document.createElement("li");
@@ -138,11 +140,15 @@ function forecastDisplay(data) {
         var humidityli = document.createElement("li");
         humidityli.textContent = "UV Index: " + data.list[i].main.humidity + "%";
 
-        li.appendChild(cardTitle)
-        container.appendChild(li)
-        container.appendChild(templi)
-        container.appendChild(windli)
-        container.appendChild(humidityli)
+        windli.appendChild(humidityli)
+        templi.appendChild(windli)
+        cardTitle.appendChild(templi)
+        div.appendChild(cardTitle)
+        
+        container.appendChild(div)
+        // container.appendChild(templi)
+        // container.appendChild(windli)
+        // container.appendChild(humidityli)
         forecastList.appendChild(container)
     }
 }
