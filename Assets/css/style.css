@@ -91,17 +91,15 @@ li button {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-right: 20px;
+    margin-right: 5px;
     width: 200px;
 }
 
-
-
-/* #forecastList {
+#forecastList {
     display: flex;
     flex-direction: row;
     justify-items: end;
-} */
+}
 
 #citylist {
     border: solid black, 1px;
