@@ -58,6 +58,7 @@ ul, li {
     margin: 0;
     padding: 0;
     line-height: 35px;
+    font-size: 15px;
 }
 
 li:before {
@@ -81,27 +82,40 @@ li button {
     font-size: 1em;
 }  
 
+#search-form {
+    border: solid black 2px;
+}
+
 #cCity {
     font-weight: bold;
     font-size: 30px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-.card2 {
+/* .card2 {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+
     margin-right: 5px;
     width: 200px;
-}
+} */
 
 #forecastList {
     display: flex;
     flex-direction: row;
-    justify-items: end;
+    flex-wrap: nowrap;
+}
+
+.card-body {
+    border-radius: 10px;
+    line-height: 10px;
 }
 
 #citylist {
     border: solid black, 1px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#currentCity-container {
+    border: solid black 2px;
 }

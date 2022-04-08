@@ -80,15 +80,15 @@ searchFormEl.addEventListener("submit", function(event) {
 });
 
 // Add click event to list of cities searched
-// citiesList.addEventListener("click", function(event) {
-//     
+historyContainer.addEventListener("click", function(event) {
     
+if (e.target.classList.contains('btn')) {
+    alert(e.target.innerHTML);
 
-
-//     storeCities();
-//     renderCitiess();
-//     }
-// });
+    storeCities();
+    renderCitiess();
+    }
+});
 
 init();
 
@@ -126,12 +126,11 @@ function forecastDisplay(data) {
         var date = "the day after"; 
         container.classList.add("card2");
         container.classList.add("card");
-        
         container.classList.add("text-white");
         var div = document.createElement("div");
         div.classList.add("card-body");
         div.classList.add("bg-dark");
-        var cardTitle = document.createElement("h5");
+        var cardTitle = document.createElement("h4");
         cardTitle.textContent = date;
         var templi = document.createElement("li");
         templi.textContent = "Temp: " + data.list[i].main.temp + "\u00B0" + "F";
