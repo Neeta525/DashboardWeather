@@ -80,15 +80,15 @@ searchFormEl.addEventListener("submit", function(event) {
 });
 
 // Add click event to list of cities searched
-historyContainer.addEventListener("click", function(event) {
-    
-if (e.target.classList.contains('btn')) {
-    alert(e.target.innerHTML);
+cityList.addEventListener("click", function() {
+    forecastDisplay(cityList.value);
+
+    historyContainerSpan.append(cityList);
 
     storeCities();
     renderCitiess();
     }
-});
+);
 
 init();
 
@@ -123,7 +123,7 @@ var getCityWeather = function (lat, lon) {
 function forecastDisplay(data) {
     for (var i = 0; i < 5; i++) {
         var container = document.createElement("div");
-        var date = "the day after"; 
+        var date = "the day after";
         container.classList.add("card2");
         container.classList.add("card");
         container.classList.add("text-white");
@@ -145,9 +145,6 @@ function forecastDisplay(data) {
         div.appendChild(cardTitle)
         
         container.appendChild(div)
-        // container.appendChild(templi)
-        // container.appendChild(windli)
-        // container.appendChild(humidityli)
         forecastList.appendChild(container)
     }
 }
@@ -219,7 +216,24 @@ function displayInfo(data) {
     currentWindEl.textContent = "Wind: " + data.current.wind_speed + " MPH";
     currentHumidityEl.textContent = "Humidity: " + data.current.humidity + "%";
     currentIndexEl.textContent = "UV Index: " + data.current.uvi;
+
+    var uvRatings = document.createElement("span");
+    
+
+if (uvRatings <= 2) {
+    $("#rating-color").css("color", "green");
+} else if (uvRatings < 6 && uvRatings > 2) {
+    $("#rating-color").css("color", "yellow");
+} else if (uvRatings < 8 && uvRatings > 5) {
+    $("rating-color").css("color", "orange");
+} else {
+    $("rating-color").css("color", "red");
 }
+
+uvRatings.innerHTML = data.current.uvi;
+currentIndexEl.append(uvRatings);
+}
+
 
 
 searchFormEl.addEventListener('click', formSubmitHandler);
