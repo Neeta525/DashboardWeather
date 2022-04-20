@@ -130,7 +130,7 @@ function forecastDisplay(data) {
         var div = document.createElement("div");
         div.classList.add("card-body");
         div.classList.add("bg-dark");
-        var cardTitle = document.createElement("h4");
+        var cardTitle = document.createElement("h5");
         cardTitle.textContent = date;
         var templi = document.createElement("li");
         templi.textContent = "Temp: " + data.list[i].main.temp + "\u00B0" + "F";
