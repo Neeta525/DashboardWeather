@@ -171,7 +171,7 @@ function forecast(lat, long) {
 
 //This function calls the city name and location
 function getCoords() {
-    var getCoord = "http://api.openweathermap.org/geo/1.0/direct?q=";
+    var getCoord = "https://api.openweathermap.org/geo/1.0/direct?q=";
     var cityName = cityInputEl.value;
     var rest = "&limit=1&appid=";
 
