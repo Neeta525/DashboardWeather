@@ -26,3 +26,26 @@ This application should work on most browsers. See the deployed
 
 - MIT
 
+ for (var i = 0; i < citiesList.length; i++) {
+        var list = citiesList[i];
+
+        var li = document.createElement("li");
+        li.textContent = list;
+        li.setAttribute("data-index", i);
+
+        var button = document.createElement("button");
+        button.textContent = ("Search it Again");
+
+        li.appendChild(button);
+        // console.log(list)
+        cityList.appendChild(li);
+        button.addEventListener("click", function() {
+            getCoords(list);
+        
+            historyContainerSpan.append(cityList);
+        
+            // storeCities();
+            // renderCitiess();
+            }
+        );
+    }

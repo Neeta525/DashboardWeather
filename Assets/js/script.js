@@ -38,20 +38,20 @@ var citiesList = [];
 // function for searched cities-local storage
 function renderLastCity() {
     cityList.innerHTML = "";
-
     for (var i = 0; i < citiesList.length; i++) {
-        var list = citiesList[i];
-
+        console.log(citiesList[i]);
         var li = document.createElement("li");
-        li.textContent = list;
+        li.textContent = citiesList[i];
         li.setAttribute("data-index", i);
 
         var button = document.createElement("button");
         button.textContent = ("Search it Again");
 
         li.appendChild(button);
+        // console.log(list)
         cityList.appendChild(li);
     }
+   
 }
 
 function init() {
@@ -63,15 +63,20 @@ function init() {
 }
 
 function storeCities() {
+    for (var i=0; i < citiesList.length;  i++) {
+        console.log (citiesList[i]);
+    }
     localStorage.setItem("citiesList", JSON.stringify(citiesList));
 }
-searchFormEl.addEventListener("submit", function(event) {
+cityButton.addEventListener("click", function(event) {
     event.preventDefault();
     var listText = cityInputEl.value.trim();
 
     if (listText === "") {
         return;
     }
+    getCoords (listText);
+    currentEl.textContent = listText + " " + today;
     citiesList.push(listText);
     cityInputEl.value = "";
 
@@ -80,15 +85,7 @@ searchFormEl.addEventListener("submit", function(event) {
 });
 
 // Add click event to list of cities searched
-cityList.addEventListener("click", function() {
-    forecastDisplay(cityList.value);
 
-    historyContainerSpan.append(cityList);
-
-    storeCities();
-    renderCitiess();
-    }
-);
 
 init();
 
@@ -121,6 +118,7 @@ var getCityWeather = function (lat, lon) {
 
 //function for 5-day forecast
 function forecastDisplay(data) {
+    forecastList.innerHTML = "";
     for (var i = 0; i < 5; i++) {
         var container = document.createElement("div");
         var date = "the day after";
@@ -170,16 +168,17 @@ function forecast(lat, long) {
 }
 
 //This function calls the city name and location
-function getCoords() {
+function getCoords(city) {
     var getCoord = "https://api.openweathermap.org/geo/1.0/direct?q=";
     var cityName = cityInputEl.value;
     var rest = "&limit=1&appid=";
 
-    fetch(getCoord + cityName + rest + APIKey)
+    fetch(getCoord + city + rest + APIKey)
     .then(function(response){
         if (response.ok) {
             response.json().then(function (data){
-            console.log(data);
+            // console.log(data);
+            console.log("completed");
             getCityWeather(data[0].lat,data[0].lon);
             forecast(data[0].lat,data[0].lon);
             });
@@ -230,7 +229,7 @@ if (uvRatings <= 2) {
     $("rating-color").css("color", "red");
 }
 
-uvRatings.innerHTML = data.current.uvi;
+// uvRatings.innerHTML = data.current.uvi;
 currentIndexEl.append(uvRatings);
 }
 
